@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
+</declaration><template><name x="5" y="5">Lampe</name><parameter>chan&amp;b, clock &amp; t</parameter><declaration>// Place local declarations here.
+</declaration><location id="id0" x="416" y="-40"><name x="406" y="-70">on</name><label kind="invariant" x="406" y="-25">t&lt;=15</label></location><location id="id1" x="224" y="-40"><name x="214" y="-70">ON</name><label kind="invariant" x="214" y="-25">t&lt;=15</label></location><location id="id2" x="16" y="-40"><name x="6" y="-70">OFF</name></location><init ref="id2"/><transition><source ref="id1"/><target ref="id2"/><label kind="guard" x="80" y="48">t==15</label><label kind="assignment" x="144" y="48">t=0</label><nail x="224" y="40"/><nail x="192" y="64"/><nail x="56" y="64"/><nail x="16" y="40"/></transition><transition><source ref="id1"/><target ref="id2"/><label kind="guard" x="48" y="0">t&gt;=3&amp;&amp;t&lt;15</label><label kind="assignment" x="144" y="0">t=0</label><nail x="200" y="16"/><nail x="40" y="16"/></transition><transition><source ref="id0"/><target ref="id2"/><label kind="guard" x="168" y="-152">t==15</label><label kind="assignment" x="224" y="-152">t=0</label><nail x="408" y="-96"/><nail x="360" y="-128"/><nail x="88" y="-128"/><nail x="32" y="-88"/></transition><transition><source ref="id1"/><target ref="id0"/><label kind="guard" x="260" y="-70">t&lt;3</label><label kind="synchronisation" x="260" y="-55">b?</label><label kind="assignment" x="260" y="-40">t=0</label></transition><transition><source ref="id2"/><target ref="id1"/><label kind="synchronisation" x="64" y="-64">b?</label><label kind="assignment" x="88" y="-64">t=0</label></transition></template><template><name>Bouton</name><parameter>chan &amp;b</parameter><location id="id3" x="0" y="0"></location><init ref="id3"/><transition><source ref="id3"/><target ref="id3"/><label kind="synchronisation" x="-60" y="-15">b!</label><nail x="-32" y="40"/><nail x="-56" y="32"/><nail x="-64" y="8"/><nail x="-56" y="-16"/><nail x="-8" y="-32"/></transition></template><system>// Place template instantiations here.
+chan bouton1, bouton2;
+clock t1, t2;
+L1 = Lampe(bouton1,t1);
+L2 = Lampe(bouton2,t2);
+B1 = Bouton(bouton1);
+B2= Bouton(bouton2);
+
+// List one or more processes to be composed into a system.
+system L1, B1;</system></nta>
